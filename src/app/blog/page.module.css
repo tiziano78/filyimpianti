@@ -1,0 +1,545 @@
+/* Layout Blog */
+.blogContainer {
+  --blog-primary: #FF7F00;
+  --blog-dark: #e67300;
+  --blog-text: #333;
+  --blog-text-light: #555;
+  --blog-bg: #ffffff;
+  --blog-bg-light: #f7fafc;
+  --blog-border: #ddd;
+  --blog-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  --blog-transition: all 0.3s ease;
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: 'Roboto', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  margin-top: 80px;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.header h1 {
+  font-size: 2.5rem;
+  color: var(--blog-text);
+  margin-bottom: 1rem;
+  font-family: 'Roboto', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+.header p {
+  color: var(--blog-text-light);
+  font-size: 1.2rem;
+}
+
+/* Categorie */
+.categories {
+  display: flex;
+  justify-content: center;
+  margin: 2rem 0;
+  padding: 1rem;
+  width: 100%;
+}
+
+.categories ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.categories button {
+  background: transparent;
+  border: 2px solid var(--blog-primary, #FF7F00);
+  border-radius: 30px;
+  color: var(--blog-text, #333);
+  cursor: pointer;
+  font-family: 'Roboto', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 500;
+  padding: 0.6rem 1.2rem;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+}
+
+.categories button:hover {
+  background: rgba(255, 127, 0, 0.1);
+  transform: translateY(-2px);
+}
+
+.active {
+  background: var(--blog-primary, #FF7F00) !important;
+  color: white !important;
+}
+
+/* Griglia Articoli */
+.blogGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 2rem;
+  margin-bottom: 3rem;
+}
+
+.article {
+  background: var(--blog-bg);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: var(--blog-shadow);
+  transition: var(--blog-transition);
+  border: 1px solid var(--blog-text-light);
+  display: flex;
+  flex-direction: column;
+  padding: 2rem;
+  margin-bottom: 2rem;
+}
+
+.article:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+}
+
+.imageContainer {
+  position: relative;
+  width: 100%;
+  padding-top: 60%;
+  overflow: hidden;
+}
+
+.image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.article:hover .image {
+  transform: scale(1.05);
+}
+
+/* Contenuto Articolo */
+.content {
+  padding: 1.5rem;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--blog-text);
+  margin-bottom: 1rem;
+  line-height: 1.4;
+  font-family: 'Roboto', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+.excerpt {
+  color: var(--blog-text-light);
+  font-size: 0.95rem;
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+}
+
+.meta {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  color: var(--blog-text-light);
+  font-size: 0.875rem;
+  margin-top: auto;
+}
+
+/* Paginazione */
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 2rem 0;
+}
+
+.pagination button {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 2px solid var(--blog-border);
+  background: var(--blog-bg);
+  color: var(--blog-text);
+  cursor: pointer;
+  transition: var(--blog-transition);
+}
+
+.pagination button:hover:not(:disabled),
+.pagination button.active {
+  background: var(--blog-primary);
+  border-color: var(--blog-primary);
+  color: white;
+}
+
+.pagination button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Newsletter */
+.newsletter {
+  background: var(--blog-bg-light);
+  padding: 3rem;
+  border-radius: 16px;
+  text-align: center;
+  margin-top: 3rem;
+}
+
+.newsletter h3 {
+  font-size: 1.5rem;
+  color: var(--blog-text);
+  margin-bottom: 1rem;
+  font-family: 'Roboto', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+.newsletter p {
+  color: var(--blog-text-light);
+  margin-bottom: 2rem;
+}
+
+.newsletter form {
+  display: flex;
+  gap: 1rem;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.newsletter input {
+  flex: 1;
+  padding: 0.75rem 1.5rem;
+  border: 2px solid var(--blog-border);
+  border-radius: 100px;
+  font-size: 1rem;
+}
+
+.newsletter button {
+  background: var(--blog-primary);
+  color: white;
+  padding: 0.75rem 2rem;
+  border: none;
+  border-radius: 100px;
+  cursor: pointer;
+  transition: var(--blog-transition);
+  font-weight: 500;
+}
+
+.newsletter button:hover {
+  background: var(--blog-dark);
+}
+
+/* Stili Articolo Singolo */
+.articleContainer {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 40px 20px;
+  margin-top: 100px;
+}
+
+.backLink {
+  display: inline-block;
+  color: var(--blog-primary);
+  text-decoration: none;
+  margin-bottom: 30px;
+  font-weight: 500;
+  transition: var(--blog-transition);
+}
+
+.backLink:hover {
+  color: var(--blog-dark);
+}
+
+.article {
+  background: white;
+  border-radius: 8px;
+  padding: 40px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.article h1 {
+  font-size: 2.5rem;
+  color: var(--blog-primary);
+  margin-bottom: 30px;
+  line-height: 1.2;
+  font-family: 'Roboto', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+.intro {
+  font-size: 1.2rem;
+  color: var(--blog-text-light);
+  margin-bottom: 40px;
+  line-height: 1.6;
+}
+
+.article section {
+  margin-bottom: 40px;
+}
+
+.article h2 {
+  font-size: 1.8rem;
+  color: var(--blog-text);
+  margin-bottom: 20px;
+  border-bottom: 2px solid var(--blog-primary);
+  padding-bottom: 10px;
+  font-family: 'Roboto', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+.article h3 {
+  font-size: 1.4rem;
+  color: var(--blog-text);
+  margin: 25px 0 15px;
+  font-family: 'Roboto', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+.article p {
+  color: var(--blog-text-light);
+  line-height: 1.8;
+  margin-bottom: 20px;
+}
+
+.article ul {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+.article ul li {
+  position: relative;
+  padding-left: 25px;
+  margin-bottom: 15px;
+  line-height: 1.6;
+  color: var(--blog-text-light);
+}
+
+.article ul li:before {
+  content: "•";
+  color: var(--blog-primary);
+  font-size: 1.5em;
+  position: absolute;
+  left: 0;
+  top: -2px;
+}
+
+.article strong {
+  color: var(--blog-text);
+  font-weight: 600;
+}
+
+/* Box Evidenziati */
+.highlight {
+  background: #fff8f0;
+  border-left: 4px solid var(--blog-primary);
+  padding: 20px;
+  margin: 20px 0;
+  border-radius: 0 8px 8px 0;
+}
+
+.warning {
+  background: #fff3cd;
+  border: 1px solid #ffeeba;
+  padding: 20px;
+  margin: 20px 0;
+  border-radius: 8px;
+  color: var(--blog-text-light);
+}
+
+/* Popup */
+.popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  z-index: 1000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+}
+
+.popupContent {
+  background: var(--blog-bg);
+  padding: 2rem;
+  border-radius: 12px;
+  width: 100%;
+  max-width: 500px;
+  position: relative;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+}
+
+.popupContent h2 {
+  color: var(--blog-text);
+  font-size: 1.5rem;
+  margin-bottom: 1.5rem;
+  text-align: center;
+  font-family: 'Roboto', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+.popupContent form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.popupContent input {
+  padding: 0.75rem 1rem;
+  border: 2px solid var(--blog-border);
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: var(--blog-transition);
+}
+
+.popupContent input:focus {
+  outline: none;
+  border-color: var(--blog-primary);
+}
+
+.popupContent button {
+  background: var(--blog-primary);
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: var(--blog-transition);
+}
+
+.popupContent button:hover {
+  background: var(--blog-dark);
+}
+
+.close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: none;
+  border: none;
+  color: var(--blog-text-light);
+  cursor: pointer;
+  font-size: 1.5rem;
+  padding: 0.5rem;
+  transition: var(--blog-transition);
+}
+
+.close:hover {
+  color: var(--blog-text);
+}
+
+/* Back to Top Button */
+.backToTop {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: #2e7d32;
+  color: white;
+  border: none;
+  border-radius: 50px;
+  padding: 10px 15px;
+  cursor: pointer;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  transition: background 0.3s ease;
+  z-index: 100;
+}
+
+.backToTop:hover {
+  background: #1b5e20;
+}
+
+/* Media Queries */
+@media (max-width: 768px) {
+  .blogContainer {
+    padding: 1rem;
+  }
+
+  .article {
+    padding: 20px;
+  }
+
+  .article h1 {
+    font-size: 2rem;
+  }
+
+  .article h2 {
+    font-size: 1.5rem;
+  }
+
+  .article h3 {
+    font-size: 1.2rem;
+  }
+
+  .popupContent {
+    padding: 1.5rem;
+    margin: 1rem;
+  }
+
+  .backToTop {
+    bottom: 1rem;
+    right: 1rem;
+  }
+
+  .categories {
+    margin: 1rem 0;
+    padding: 0.5rem;
+  }
+
+  .categories button {
+    font-size: 0.85rem;
+    padding: 0.5rem 1rem;
+  }
+}
+
+/* Dark Mode */
+@media (prefers-color-scheme: dark) {
+  .blogContainer {
+    --blog-text: #f7fafc;
+    --blog-text-light: #cbd5e0;
+    --blog-bg: #1a202c;
+    --blog-bg-light: #2d3748;
+    --blog-border: #4a5568;
+  }
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  .article,
+  .backToTop,
+  .popupContent,
+  .close {
+    transition: none !important;
+    transform: none !important;
+  }
+}
+
+/* Stili per gli articoli */
+.article {
+  margin-bottom: 20px;
+  padding: 20px;
+  border: 1px solid #eee;
+  border-radius: 4px;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.articleTitle {
+  font-size: 24px;
+  margin-bottom: 10px;
+  font-family: 'Roboto', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+.articleContent {
+  font-size: 16px;
+  line-height: 1.5;
+}

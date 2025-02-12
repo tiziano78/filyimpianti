@@ -1,0 +1,139 @@
+.formContainer {
+  width: 100%;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.formContainer h3 {
+  color: #25D366;
+  margin-bottom: 20px;
+  font-family: var(--font-roboto);
+  font-weight: 500;
+  text-align: center;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.formGroup {
+  position: relative;
+}
+
+.formGroup input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #25D366;
+  border-radius: 5px;
+  background: transparent;
+  color: #25D366;
+  font-size: 1rem;
+}
+
+.formGroup input::placeholder {
+  color: rgba(37, 211, 102, 0.7);
+}
+
+.formGroup input:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.privacyConsent {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin: 10px 0;
+}
+
+.privacyConsent input[type="checkbox"] {
+  margin-top: 4px;
+}
+
+.privacyConsent label {
+  color: #ffffff;
+  font-size: 0.9rem;
+  line-height: 1.4;
+}
+
+.policyLink {
+  background: none;
+  border: none;
+  color: #25D366;
+  text-decoration: underline;
+  padding: 0;
+  font-size: inherit;
+  cursor: pointer;
+}
+
+.policyLink:hover {
+  color: #22c35e;
+}
+
+.privacyNotice {
+  margin: 10px 0;
+  padding: 10px;
+  border-radius: 5px;
+  background: rgba(37, 211, 102, 0.1);
+}
+
+.privacyNotice p {
+  color: #ffffff;
+  font-size: 0.8rem;
+  line-height: 1.4;
+  margin: 0;
+}
+
+.submitButton {
+  width: 100%;
+  padding: 12px;
+  background: #25D366;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.submitButton:hover:not(:disabled) {
+  background: #22c35e;
+}
+
+.submitButton:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.error {
+  padding: 12px;
+  background: rgba(230, 57, 70, 0.1);
+  border: 1px solid #E63946;
+  color: #E63946;
+  border-radius: 5px;
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+.success {
+  padding: 20px;
+  background: rgba(37, 211, 102, 0.1);
+  border: 1px solid #25D366;
+  color: #25D366;
+  border-radius: 5px;
+  text-align: center;
+  font-weight: 500;
+}
+
+@media (max-width: 768px) {
+  .formContainer {
+    padding: 0 15px;
+  }
+
+  .formGroup input {
+    font-size: 16px; /* Previene lo zoom su iOS */
+  }
+} 

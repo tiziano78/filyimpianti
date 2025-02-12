@@ -1,0 +1,183 @@
+.teamCarouselSection {
+    width: 100%;
+    padding: 10px;
+    margin-top: 30px;
+    overflow: hidden;
+}
+
+.container {
+    width: 100%;
+    margin: 0 auto;
+    max-width: 1200px;
+}
+
+.teamSectionTitle {
+    text-align: center;
+    color: #00205B;
+    font-size: 2rem;
+    margin: 0 0 30px 0;
+}
+
+.teamSlider {
+    position: relative;
+    width: 100%;
+}
+
+.teamSlides {
+    width: 100%;
+    padding: 0;
+}
+
+.teamSlide {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 10px;
+}
+
+.memberImage {
+    width: 160px;
+    height: 160px;
+    border-radius: 10px;
+    object-fit: cover;
+}
+
+.navButton {
+    width: 40px;
+    height: 40px;
+    border: none;
+    border-radius: 50%;
+    background: #FF6B35;
+    color: white;
+    cursor: pointer;
+    font-size: 18px;
+    transition: transform 0.2s ease, background-color 0.2s ease;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.navButton:hover {
+    background: #ff8255;
+    transform: translateY(-50%) scale(1.1);
+}
+
+.prev {
+    left: -20px;
+}
+
+.next {
+    right: -20px;
+}
+
+.memberInfo {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    text-align: center;
+}
+
+.memberInfo h3 {
+    font-size: 1rem;
+    margin: 0;
+    color: #00205B;
+}
+
+.memberInfo p {
+    font-size: 0.875rem;
+    color: #666;
+    margin: 5px 0 0;
+    line-height: 1.2;
+}
+
+@media (max-width: 1200px) {
+    .container {
+        width: 95%;
+    }
+    
+    .memberImage {
+        width: 130px;
+        height: 130px;
+    }
+}
+
+@media (max-width: 992px) {
+    .memberImage {
+        width: 110px;
+        height: 110px;
+    }
+    
+    .prev {
+        left: -15px;
+    }
+    
+    .next {
+        right: -15px;
+    }
+}
+
+@media (max-width: 768px) {
+    .container {
+        width: 100%;
+    }
+    
+    .memberImage {
+        width: 90px;
+        height: 90px;
+    }
+    
+    .navButton {
+        width: 35px;
+        height: 35px;
+    }
+    
+    .prev {
+        left: -10px;
+    }
+    
+    .next {
+        right: -10px;
+    }
+}
+
+@media (max-width: 480px) {
+    .memberImage {
+        width: 80px;
+        height: 80px;
+    }
+    
+    .navButton {
+        width: 30px;
+        height: 30px;
+        font-size: 14px;
+    }
+    
+    .prev {
+        left: -5px;
+    }
+    
+    .next {
+        right: -5px;
+    }
+    
+    .memberInfo h3 {
+        font-size: 0.8rem;
+    }
+    
+    .memberInfo p {
+        font-size: 0.7rem;
+    }
+}
+
+.carouselContainer {
+    margin-top: 40px;
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+} 

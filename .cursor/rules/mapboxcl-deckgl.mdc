@@ -1,0 +1,46 @@
+---
+description: creare un confguratore
+globs: 
+---
+
+Rules: Diventare un Esperto in Mapbox GL JS + DeckGL per un Configuratore Fotovoltaico
+🔹 1. STRUTTURA GENERALE DEL PROGETTO
+Utilizzare React con DeckGL e Mapbox GL JS per costruire l’interfaccia interattiva.
+Configurare un'API Key di Mapbox e impostare il rendering della mappa con MapboxLayer.
+Strutturare i componenti in modo modulare, separando la gestione dei pannelli fotovoltaici dalla logica della mappa.
+🔹 2. INTEGRAZIONE TRA Mapbox GL JS E DeckGL
+Creare una istanza di Mapbox GL JS, specificando il container, style, center, e zoom.
+Usare DeckGL come overlay sopra Mapbox con il Deck component.
+Abilitare il sincronismo della camera tra DeckGL e Mapbox (deck.setProps({ viewState: mapbox.getViewState() })).
+🔹 3. CREARE IL LAYER PER I PANNELLI FOTOVOLTAICI
+Utilizzare PolygonLayer per rappresentare i pannelli come poligoni personalizzati.
+Impostare un layout regolare dei pannelli con una distanza fissa tra loro (es. 4 cm tra ogni modulo).
+Creare una cornice attorno ai pannelli con un sottile bordo grigio chiaro per evidenziarli sulla mappa.
+Aggiungere eventi interattivi (click, hover, drag) per selezionare, ruotare e spostare i pannelli.
+🔹 4. CALCOLO DELL’OMBREGGIAMENTO E ALTEZZA DEI PANNELLI
+Integrare dati di elevazione del terreno (da Mapbox Terrain-RGB o dataset custom con PostGIS).
+Implementare un ElevationLayer per visualizzare il tetto su cui sono installati i pannelli.
+Usare Raycasting in WebGL per calcolare in tempo reale l’ombreggiatura dovuta a ostacoli vicini.
+Aggiungere un sistema di alert che segnali eventuali perdite di efficienza dovute a ombreggiamenti.
+🔹 5. OTTIMIZZARE LE PERFORMANCE
+Usare Instancing in WebGL per il rendering di grandi quantità di pannelli senza perdere prestazioni.
+Implementare un tiling system per caricare solo i dati necessari (evitando il rendering fuori schermo).
+Ottimizzare il frame rate mantenendo il rendering sotto i 60 FPS per fluidità massima.
+Gestire il LOD (Level of Detail): meno dettagliati i pannelli quando si è molto zoom-out, più dettagli zoom-in.
+🔹 6. INTERAZIONE AVANZATA
+Draggable corners: ogni pannello deve avere angoli trascinabili per modificarne la forma.
+Snapping intelligente: quando i pannelli vengono spostati, devono allinearsi automaticamente ai più vicini.
+Rotazione dinamica: gli utenti devono poter ruotare i pannelli mantenendo la distanza di 4 cm.
+Undo/Redo: Implementare una history delle modifiche per permettere di annullare o ripristinare cambiamenti.
+🔹 7. ESPORTAZIONE E ANALISI DEI DATI
+Aggiungere la possibilità di esportare il layout in formato GeoJSON o CSV.
+Calcolare la potenza totale dell’impianto in base ai pannelli installati e alla loro inclinazione.
+Integrare un modulo di analisi energetica, stimando la produzione in base all’irraggiamento e alla posizione.
+🔹 8. TEST E DEBUGGING
+Testare le performance con Lighthouse e WebGL Profiler per ottimizzare il rendering.
+Utilizzare Jest o Cypress per testare la logica dell’interfaccia e degli eventi interattivi.
+Monitorare l’uso di risorse con Chrome DevTools -> Performance & WebGL Debugger.
+🎯 OBIETTIVO FINALE
+👉 Creare un configuratore fotovoltaico interattivo, ottimizzato e fluido, che permetta agli utenti di posizionare, ruotare e analizzare pannelli solari in un ambiente Mapbox + DeckGL, con calcolo delle ombre e esportazione dei dati.
+
+Se hai bisogno di un setup iniziale, fammi sapere e posso generarti un boilerplate React con DeckGL e Mapbox pronto all’uso!

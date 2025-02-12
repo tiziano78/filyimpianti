@@ -1,0 +1,194 @@
+/* Hero Section Styles */
+.hero {
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-between;
+    padding: 80px 0;
+    background-image: url('/images/hero/sfondo.webp');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    overflow-x: hidden;
+    margin: 0;
+    left: 0;
+    right: 0;
+}
+
+.hero_title {
+    font-family: var(--font-family-secondary);
+    font-weight: var(--font-weight-normal);
+    margin-left: 40px;
+    font-size: 2.5rem;
+    color: #ffffff;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
+    letter-spacing: 0.5px;
+}
+
+.hero_subtitle {
+    font-family: var(--font-family-secondary);
+    font-weight: var(--font-weight-normal);
+    margin-left: 40px;
+    margin-top: 20px;
+    font-size: 2.2rem;
+    color: #FFD700;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+    letter-spacing: 0.5px;
+    min-height: 2em;
+    margin-bottom: 1rem;
+}
+
+.hero_starlink {
+    display: inline-block;
+    font-family: 'Orbitron', sans-serif;
+    font-weight: var(--font-weight-medium);
+    margin-left: 115px;
+    margin-top: 15px;
+    font-size: 1.0rem;
+    position: relative;
+    background: linear-gradient(
+        to left,
+        #B8860B 20%,
+        #FFD700 40%,
+        #FFFFFF 50%,
+        #FFD700 60%,
+        #B8860B 80%
+    );
+    background-size: 200% auto;
+    animation: shine 3s linear infinite;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    text-shadow: 2px 2px 4px rgba(0, 32, 91, 0.9);
+    cursor: pointer;
+    letter-spacing: 0.5px;
+    -webkit-text-stroke: 0.2px #cb9b51;
+}
+
+@keyframes shine {
+    from {
+        background-position: -200% center;
+    }
+    to {
+        background-position: 0% center;
+    }
+}
+
+.hero-starlink:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+@keyframes gradient {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+/* Tablet styles */
+@media (max-width: 768px) {
+    .hero {
+        padding: 60px 0;
+        background-attachment: scroll;
+    }
+
+    .hero_title {
+        font-size: 2rem;
+        margin-left: 20px;
+        text-align: center;
+    }
+
+    .hero_subtitle {
+        font-size: 1.8rem;
+        margin-left: 20px;
+        text-align: center;
+    }
+
+    .hero-starlink {
+        font-size: 0.9rem;
+        margin-left: auto;
+        margin-right: auto;
+        text-align: center;
+        display: block;
+    }
+}
+
+/* Mobile styles */
+@media (max-width: 480px) {
+    .hero {
+        width: 100%;
+        margin: 0;
+        padding: 60px 15px 40px;
+        background-attachment: scroll;
+        background-size: 100% auto;
+        background-position: top center;
+        min-height: calc(100vh + 40px);
+    }
+
+    .hero_title {
+        font-size: 1.5rem;
+        margin-left: 15px;
+        margin-right: 15px;
+        padding-top: 20px;
+    }
+
+    .hero_subtitle {
+        font-size: 1.3rem;
+        margin-left: 15px;
+        margin-right: 15px;
+    }
+
+    .hero-starlink {
+        font-size: 0.8rem;
+    }
+}
+
+/* Per dispositivi mobili in modalità portrait */
+@media screen and (max-width: 768px) and (orientation: portrait) {
+  .hero {
+    background-image: url('/images/hero/sfondosmart.webp');
+    width: 100%;
+    margin: 0;
+  }
+}
+
+.rotate_text {
+    display: inline-block;
+    color: #FFD700;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+    font-style: italic;
+    font-family: var(--font-family-primary);
+    font-weight: var(--font-weight-extrabold);
+}
+
+.hero_cta_container {
+    min-height: 60px;
+    position: relative;
+}
+
+.testimonialContainer {
+    width: 100%;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: auto;  /* Spinge il container verso il basso */
+    padding: 20px 0;
+    contain: layout paint;  /* Ottimizzazione performance */
+}
+
+@media (max-width: 768px) {
+    .testimonialContainer {
+        padding: 15px 0;
+    }
+}

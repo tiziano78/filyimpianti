@@ -1,0 +1,60 @@
+.container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  position: relative;
+  overflow: hidden;
+}
+
+.inner {
+  width: 60%;
+  max-width: 1000px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.inner::before,
+.inner::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 100px;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.inner::before {
+  left: 0;
+  background: linear-gradient(to right, rgba(255,255,255,1), rgba(255,255,255,0));
+}
+
+.inner::after {
+  right: 0;
+  background: linear-gradient(to left, rgba(255,255,255,1), rgba(255,255,255,0));
+}
+
+@media (max-width: 1440px) {
+  .inner {
+    width: 75%;
+  }
+}
+
+@media (max-width: 1024px) {
+  .inner {
+    width: 80%;
+  }
+}
+
+@media (max-width: 768px) {
+  .inner {
+    width: 90%;
+  }
+  
+  .inner::before,
+  .inner::after {
+    width: 50px;
+  }
+} 

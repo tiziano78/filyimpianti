@@ -1,0 +1,18 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 20010904//EN" "http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd">
+<svg version="1.0" xmlns="http://www.w3.org/2000/svg"
+     width="512" height="512" viewBox="0 0 512 512"
+     preserveAspectRatio="xMidYMid meet">
+  <g transform="translate(0,512) scale(0.1,-0.1)" fill="#000000">
+    <!-- Casa base -->
+    <path d="M1000 4000 l-1000 -1000 200 -200 800 800 0 -1600 400 0 0 1000 1200
+    -1200 1400 1400 -200 200 -1200 -1200 0 1800 -400 0 0 -1400 -400 400 0 1000
+    -400 0 0 -1000 -400 400 0 600z"/>
+    <!-- Pannello solare -->
+    <path d="M3600 3200 l-400 -400 800 0 0 400 -400 0zm100 -100 l100 -100 0
+    -100 -200 0 0 200 100 0z"/>
+    <!-- Cerchi solari -->
+    <circle cx="2800" cy="1200" r="300"/>
+    <circle cx="3300" cy="800" r="200"/>
+  </g>
+</svg> 

@@ -1,0 +1,176 @@
+.starlink-popup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.3);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.starlink-popup-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.starlink-popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: radial-gradient(circle, rgba(11, 61, 145, 0.95), rgba(0, 0, 0, 0.9));
+    padding: 40px;
+    max-width: 600px;
+    width: 75%;
+    border-radius: 20px;
+    z-index: 1200;
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.6);
+}
+
+.starlink-popup-close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    padding: 6px 15px;
+    font-size: 14px;
+    cursor: pointer;
+    border: none;
+    background: #E63946;
+    color: white;
+    border-radius: 20px;
+    font-family: var(--font-roboto);
+    font-weight: 500;
+    text-transform: uppercase;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.starlink-popup-close:hover {
+    background: #D62839;
+    transform: scale(1.05);
+}
+
+.starlink-popup-title {
+    font-family: var(--font-roboto);
+    font-weight: 700;
+    font-size: 2rem;
+    margin-bottom: 20px;
+    color: #FFD700;
+    text-align: center;
+    animation: fadeIn 0.5s ease;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+}
+
+.starlink-popup-subtitle {
+    font-family: var(--font-roboto);
+    font-weight: 400;
+    font-size: 1.2rem;
+    line-height: 1.6;
+    margin-bottom: 30px;
+    color: #E8E8E8;
+    text-align: center;
+    animation: fadeIn 0.6s ease;
+}
+
+.starlink-popup-whatsapp {
+    display: block;
+    background: linear-gradient(90deg, #25D366, #1EBE5B);
+    color: white;
+    padding: 15px 30px;
+    text-decoration: none;
+    border-radius: 50px;
+    font-size: 1.1rem;
+    font-family: var(--font-roboto);
+    font-weight: 500;
+    text-align: center;
+    margin: 0 auto;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.5);
+    transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.starlink-popup-whatsapp:hover {
+    transform: scale(1.1);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.6);
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media (max-width: 768px) {
+    .starlink-popup {
+        width: 75%;
+        padding: 25px;
+    }
+
+    .starlink-popup-title {
+        font-size: 5vw;
+        margin-bottom: 15px;
+        padding: 0 20px;
+    }
+
+    .starlink-popup-subtitle {
+        font-size: 4vw;
+        margin-bottom: 20px;
+        padding: 0 15px;
+    }
+
+    .starlink-popup-whatsapp {
+        width: 90%;
+        font-size: 4vw;
+        padding: 12px 20px;
+    }
+
+    .starlink-popup-close {
+        top: 5px;
+        right: 5px;
+        padding: 4px 12px;
+        font-size: 12px;
+    }
+}
+
+@media (max-height: 600px) and (orientation: landscape) {
+    .starlink-popup {
+        max-height: 85vh;
+        overflow-y: auto;
+        width: 65%;
+        padding: 20px;
+    }
+
+    .starlink-popup-title {
+        font-size: 1.4rem;
+        margin-bottom: 12px;
+    }
+
+    .starlink-popup-subtitle {
+        font-size: 1rem;
+        line-height: 1.4;
+        margin-bottom: 20px;
+    }
+
+    .starlink-popup-whatsapp {
+        padding: 10px 20px;
+        font-size: 0.9rem;
+    }
+
+    .starlink-popup-close {
+        padding: 4px 10px;
+        font-size: 12px;
+    }
+}
+
+@media (min-width: 768px) {
+    .popup {
+        width: auto;
+    }
+} 

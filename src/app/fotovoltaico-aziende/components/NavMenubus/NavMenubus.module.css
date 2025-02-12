@@ -1,0 +1,207 @@
+.navbar_menu {
+    margin-left: auto;
+}
+
+.menu_items {
+    display: flex;
+    gap: 15px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.menu_items--business {
+    display: flex;
+    gap: 15px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.menu_item:last-child {
+    margin-right: 60px;
+}
+
+.menu_link,
+.dropdown_toggle {
+    color: #006400;
+    font-family: var(--font-family-secondary);
+    font-weight: var(--font-weight-normal);
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 3px;
+    transition: color 0.3s;
+    font-size: 1rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.menu_items--business .menu_link,
+.menu_items--business .dropdown_toggle {
+    color: #FFD700;
+}
+
+/* Dropdown styles */
+.dropdown {
+    position: relative;
+}
+
+.dropdown_menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: rgba(0, 0, 0, 0.6);
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+    min-width: 200px;
+    padding: 10px 0;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s, visibility 0.3s;
+}
+
+.menu_items--business .dropdown_menu {
+    background: rgba(0, 150, 199, 0.9);
+}
+
+.dropdown_menu--active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.dropdown_link {
+    color: #25D366;
+    font-family: var(--font-family-secondary);
+    font-weight: var(--font-weight-normal);
+    font-size: 0.9rem;
+    text-transform: capitalize;
+    display: block;
+    padding: 8px 20px;
+}
+
+.menu_items--business .dropdown_link {
+    color: #FFD700;
+}
+
+.dropdown_link:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+.menu_items--business .dropdown_link:hover {
+    background-color: rgba(0, 150, 199, 1);
+    color: #FFFFFF;
+}
+
+/* Mobile styles */
+@media (max-width: 830px) {
+    .navbar_menu {
+        display: none;
+    }
+
+    .navbar_menu--active {
+        display: block;
+        position: absolute;
+        top: 60px;
+        right: 20px;
+        width: 280px;
+        background: rgba(0, 0, 0, 0.8);
+        border-radius: 8px;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        max-height: calc(100vh - 80px);
+        overflow-y: auto;
+        z-index: 1000;
+    }
+
+    .menu_items,
+    .menu_items--business {
+        flex-direction: column;
+        padding: 30px;
+        gap: 25px;
+        overflow-y: auto;
+    }
+
+    .menu_link,
+    .dropdown_toggle {
+        font-family: var(--font-family-secondary);
+        font-weight: var(--font-weight-normal);
+        color: #25D366;
+        font-size: 1.2rem;
+        padding: 15px;
+        text-align: center;
+        width: 100%;
+        display: block;
+    }
+
+    .menu_items--business .menu_link,
+    .menu_items--business .dropdown_toggle {
+        color: #FFD700;
+    }
+
+    .dropdown_menu {
+        position: static;
+        background: transparent;
+        padding-left: 20px;
+        opacity: 1;
+        visibility: visible;
+        display: none;
+        width: 100%;
+        box-shadow: none;
+        border-radius: 0;
+    }
+
+    .dropdown_menu--active {
+        display: block;
+    }
+
+    .menu_item:last-child {
+        margin-right: 0;
+    }
+
+    .dropdown_link {
+        color: #90EE90;
+        padding: 8px 16px;
+        display: block;
+        font-size: 0.95rem;
+    }
+
+    .menu_items--business .dropdown_link {
+        color: #FFD700;
+    }
+
+    .dropdown_link:hover {
+        background: rgba(255, 255, 255, 0.1);
+        color: #98FF98;
+    }
+
+    .menu_items--business .dropdown_link:hover {
+        background: rgba(0, 150, 199, 1);
+        color: #FFFFFF;
+    }
+}
+
+/* Desktop styles */
+@media (min-width: 831px) {
+    .dropdown_menu {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        min-width: 200px;
+        background: rgba(0, 0, 0, 0.6);
+        box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        border-radius: 4px;
+        backdrop-filter: blur(5px);
+    }
+
+    .dropdown_link {
+        color: #90EE90;
+        padding: 12px 16px;
+        display: block;
+        transition: all 0.2s ease;
+    }
+
+    .dropdown_link:hover {
+        background: rgba(255, 255, 255, 0.1);
+        color: #98FF98;
+    }
+}

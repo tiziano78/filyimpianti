@@ -1,0 +1,53 @@
+.logo {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  position: relative;
+  transition: all 0.3s ease;
+  padding: 0.5rem;
+  filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.2));
+}
+
+.logo:hover {
+  transform: scale(1.05);
+  filter: drop-shadow(0 0 12px rgba(255, 255, 255, 0.3));
+}
+
+.logo:focus {
+  outline: 2px solid rgba(0, 150, 199, 0.5);
+  outline-offset: 2px;
+}
+
+.logo:focus:not(:focus-visible) {
+  outline: none;
+}
+
+.logo:active {
+  transform: scale(0.95);
+}
+
+.logo_img {
+  width: 170px;
+  height: 100px;
+  object-fit: contain;
+  background: transparent;
+  transition: all 0.3s ease;
+  will-change: transform;
+  filter: contrast(1.1) brightness(1.1);
+}
+
+.logo:hover .logo_img {
+  filter: contrast(1.2) brightness(1.2);
+}
+
+/* Responsive per mobile */
+@media (max-width: 768px) {
+  .logo {
+    padding: 0.3rem;
+  }
+  
+  .logo_img {
+    width: 130px;
+    height: 76px;
+  }
+} 

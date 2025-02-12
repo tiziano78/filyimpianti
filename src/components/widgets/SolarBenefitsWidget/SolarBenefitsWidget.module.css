@@ -1,0 +1,142 @@
+.serviceSection {
+    padding: 60px 20px;
+    background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+    color: white;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.title {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 15px;
+    font-family: var(--font-roboto);
+}
+
+.subtitle {
+    text-align: center;
+    font-size: 1.2rem;
+    margin-bottom: 50px;
+    opacity: 0.9;
+    font-family: var(--font-roboto);
+}
+
+.benefitsGrid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    padding: 20px 0;
+}
+
+.benefitItem {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 25px;
+    border-radius: 10px;
+    backdrop-filter: blur(10px);
+    transition: transform 0.3s ease;
+}
+
+.benefitItem:hover {
+    transform: translateY(-5px);
+}
+
+.benefitItem h3 {
+    font-size: 1.3rem;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #fbbf24;
+    font-family: var(--font-roboto);
+}
+
+.icon {
+    font-size: 1.5rem;
+}
+
+.benefitItem p {
+    opacity: 0.9;
+    line-height: 1.6;
+    font-size: 1rem;
+    font-family: var(--font-roboto);
+}
+
+/* Tablet */
+@media (max-width: 1024px) {
+    .serviceSection {
+        padding: 30px 10px;
+    }
+
+    .title {
+        font-size: 1.8rem;
+    }
+
+    .subtitle {
+        font-size: 1rem;
+        margin-bottom: 25px;
+    }
+
+    .benefitsGrid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
+    }
+
+    .benefitItem {
+        padding: 15px;
+    }
+
+    .benefitItem h3 {
+        font-size: 0.9rem;
+        margin-bottom: 10px;
+    }
+
+    .benefitItem p {
+        font-size: 0.8rem;
+        line-height: 1.3;
+    }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+    .serviceSection {
+        padding: 20px 10px;
+    }
+
+    .title {
+        font-size: 1.5rem;
+        margin-bottom: 8px;
+    }
+
+    .subtitle {
+        font-size: 0.9rem;
+        margin-bottom: 20px;
+    }
+
+    .benefitsGrid {
+        grid-template-columns: repeat(1, 1fr);
+        gap: 15px;
+        padding: 10px;
+    }
+
+    .benefitItem {
+        padding: 12px;
+    }
+
+    .benefitItem h3 {
+        font-size: 0.9rem;
+        margin-bottom: 8px;
+        gap: 5px;
+    }
+
+    .icon {
+        font-size: 1.2rem;
+    }
+
+    .benefitItem p {
+        font-size: 0.8rem;
+        line-height: 1.3;
+    }
+} 

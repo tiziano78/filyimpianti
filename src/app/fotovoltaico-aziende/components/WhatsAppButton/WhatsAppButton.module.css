@@ -1,0 +1,62 @@
+.whatsapp {
+    margin-left: 120px;
+    height: 70px;
+    display: block;
+    position: relative;
+    transition: transform 0.3s ease;
+}
+
+.whatsapp:hover {
+    transform: scale(1.1);
+}
+
+.whatsapp:focus {
+    outline: 2px solid rgba(37, 99, 235, 0.5);
+    outline-offset: 2px;
+}
+
+.whatsapp:focus:not(:focus-visible) {
+    outline: none;
+}
+
+.whatsapp:active {
+    transform: scale(0.95);
+}
+
+.whatsapp__image {
+    height: 100%;
+    width: auto;
+    transition: all 0.3s ease;
+    will-change: transform;
+}
+
+/* Tooltip */
+.whatsapp::after {
+    content: 'Contattaci su WhatsApp';
+    position: absolute;
+    bottom: -30px;
+    left: 50%;
+    transform: translateX(-50%) translateY(10px);
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 5px 10px;
+    border-radius: 4px;
+    font-size: 12px;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+    pointer-events: none;
+}
+
+.whatsapp:hover::after {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(0);
+}
+
+@media (max-width: 830px) {
+    .whatsapp {
+        display: none;
+    }
+} 
