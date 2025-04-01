@@ -194,11 +194,24 @@ const NewsletterSignup = () => {
     setStatus('loading')
     
     try {
-      // TODO: Implementa l'integrazione con il tuo servizio newsletter
-      await new Promise(resolve => setTimeout(resolve, 1000)) // Simulazione
+      const response = await fetch('/api/newsletter', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email }),
+      })
+      
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.error || 'Errore durante l\'iscrizione');
+      }
+      
       setStatus('success')
+      setEmail('')
       trackEvent('newsletter_signup', { location: 'blog' })
     } catch (error) {
+      console.error('Errore iscrizione newsletter:', error)
       setStatus('error')
     }
   }
@@ -211,6 +224,8 @@ const NewsletterSignup = () => {
       <form onSubmit={handleSubmit}>
         <input
           type="email"
+          id="newsletter-email"
+          name="email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           placeholder="La tua email"
@@ -362,10 +377,14 @@ export default function BlogPage() {
       <div className={styles.searchBar}>
         <input
           type="text"
+          id="blog-search"
+          name="blog-search"
           placeholder="🔍 Cerca articoli..."
           value={searchQuery}
-          onChange={(e) => setSearchQuery(e.target.value)}
+          onChange={handleSearch}
           className={styles.searchInput}
+          role="searchbox"
+          aria-label="Cerca articoli nel blog"
         />
       </div>
 

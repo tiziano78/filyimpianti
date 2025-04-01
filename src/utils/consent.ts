@@ -7,7 +7,13 @@ export interface ConsentOptions {
   marketingCookies: boolean;
 }
 
-const CONSENT_KEY = 'cookie_consent'
+interface ConsentPreferences {
+  necessary: boolean;
+  analytics: boolean;
+  marketing: boolean;
+}
+
+const CONSENT_KEY = 'cookie-consent'
 
 /**
  * Salva il consenso dei cookie sia in localStorage che nei cookie
@@ -103,4 +109,54 @@ export const clearConsent = (): void => {
   } catch (error) {
     console.error('[CONSENT] Errore nella rimozione del consenso:', error)
   }
+}
+
+export function getConsent(): ConsentPreferences | null {
+  try {
+    const consent = localStorage.getItem(CONSENT_KEY);
+    return consent ? JSON.parse(consent) : null;
+  } catch (error) {
+    console.error('[CONSENT] Errore nel recupero del consenso:', error);
+    return null;
+  }
+}
+
+export function hasAnalyticsConsent(): boolean {
+  const consent = getConsent();
+  return !!consent?.analytics;
+}
+
+export function hasMarketingConsent(): boolean {
+  const consent = getConsent();
+  return !!consent?.marketing;
+}
+
+// Funzione per verificare se è necessario mostrare il banner
+export function shouldShowBanner(): boolean {
+  return !getConsent();
+}
+
+// Funzione per inizializzare i servizi in base al consenso
+export function initializeServices(): void {
+  const consent = getConsent();
+  
+  if (consent?.analytics) {
+    // Inizializza servizi analytics (es. Google Analytics)
+    initializeAnalytics();
+  }
+  
+  if (consent?.marketing) {
+    // Inizializza servizi marketing (es. Facebook Pixel)
+    initializeMarketing();
+  }
+}
+
+function initializeAnalytics(): void {
+  // Implementa l'inizializzazione di Google Analytics
+  // window.gtag('config', 'GA-ID', { anonymize_ip: true });
+}
+
+function initializeMarketing(): void {
+  // Implementa l'inizializzazione di servizi marketing
+  // es. Facebook Pixel, LinkedIn Insight Tag, etc.
 }

@@ -1,5 +1,6 @@
 import React from 'react'
 import styles from './Banner.module.css'
+import { useRouter } from 'next/navigation'
 
 export interface BannerProps {
   title?: string
@@ -14,6 +15,16 @@ export default function Banner({
   ctaText = 'Scopri di Più',
   onCtaClick
 }: BannerProps) {
+  const router = useRouter()
+
+  const handleCtaClick = () => {
+    if (onCtaClick) {
+      onCtaClick()
+    } else {
+      router.push('/blog')
+    }
+  }
+
   return (
     <div className={styles.banner}>
       <div className={styles.content}>
@@ -22,7 +33,7 @@ export default function Banner({
         {ctaText && (
           <button 
             className={styles.cta}
-            onClick={onCtaClick}
+            onClick={handleCtaClick}
           >
             {ctaText}
           </button>

@@ -52,25 +52,6 @@ export default function NavMenu({ isOpen, variant = 'default' }: NavMenuProps) {
           <Link href="/conto-termico" className={styles.menu_link}>CONTO TERMICO 3.0</Link>
         </li>
         
-        {/* Dropdown Aziende */}
-        <li className={clsx(styles.menu_item, styles.dropdown)}>
-          <button 
-            onClick={() => handleDropdownClick('aziende')}
-            className={clsx(styles.dropdown_toggle, navbarStyles.bold_link)}
-          >
-            AZIENDE
-          </button>
-          <ul className={clsx(styles.dropdown_menu, {
-            [styles['dropdown_menu--active']]: activeDropdown === 'aziende'
-          })}>
-            <li>
-              <Link href="/fotovoltaico-aziende" className={styles.dropdown_link}>
-                Fotovoltaico per Aziende
-              </Link>
-            </li>
-          </ul>
-        </li>
-
         {/* Dropdown Realizzazioni */}
         <li className={clsx(styles.menu_item, styles.dropdown)}>
           <button 

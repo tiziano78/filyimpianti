@@ -25,7 +25,7 @@ export default function StarlinkPopup() {
           Contattaci su WhatsApp per conoscere l'offerta
         </p>
         <a 
-          href="https://wa.me/+393517655426" 
+          href="https://wa.me/3470087833" 
           className={styles['starlink-popup-whatsapp']} 
           target="_blank"
           rel="noopener noreferrer"

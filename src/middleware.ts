@@ -38,14 +38,6 @@ export function middleware(request: NextRequest) {
   // Imposta gli header di compressione
   response.headers.set('Accept-Encoding', 'br, gzip')
 
-  // Imposta gli header per il preload delle risorse critiche
-  if (request.nextUrl.pathname === '/blog') {
-    response.headers.set(
-      'Link',
-      '<style.css>; rel=preload; as=style, <critical.js>; rel=preload; as=script'
-    )
-  }
-
   return response
 }
 

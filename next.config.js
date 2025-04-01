@@ -1,5 +1,4 @@
 const path = require("path");
-const webpack = require("webpack");
 const withBundleAnalyzer = require("@next/bundle-analyzer")({
   enabled: process.env.ANALYZE === "true",
 });
@@ -7,19 +6,11 @@ const withBundleAnalyzer = require("@next/bundle-analyzer")({
 /** @type {import("next").NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
-  transpilePackages: [
-    "@deck.gl/core",
-    "@deck.gl/layers",
-    "@deck.gl/react",
-    "@deck.gl/widgets",
-    "@deck.gl/mesh-layers",
-    "@deck.gl/geo-layers",
-    "@luma.gl/engine",
-    "@mapbox/mapbox-gl-geocoder"
-  ],
   compiler: {
-    styledComponents: true,
     removeConsole: process.env.NODE_ENV === "production",
+  },
+  eslint: {
+    ignoreDuringBuilds: true,
   },
   env: {
     NEXT_PUBLIC_MAPBOX_TOKEN: process.env.NEXT_PUBLIC_MAPBOX_TOKEN || '',
@@ -29,21 +20,19 @@ const nextConfig = {
       {
         protocol: "http",
         hostname: "localhost"
+      },
+      {
+        protocol: "https",
+        hostname: "*.vercel.app"
       }
     ],
     formats: ["image/avif", "image/webp"],
     minimumCacheTTL: 60,
   },
   experimental: {
-    optimizeCss: true,
-    optimizePackageImports: [
-      '@deck.gl/core',
-      '@deck.gl/layers',
-      'mapbox-gl'
-    ],
-    serverActions: {}
+    optimizeCss: true
   },
-  webpack: (config, { dev, isServer }) => {
+  webpack: (config) => {
     // Alias per i moduli
     config.resolve.alias = {
       ...config.resolve.alias,
@@ -59,35 +48,46 @@ const nextConfig = {
       "@public": path.join(__dirname, "public")
     };
 
-    // Configurazione output
-    config.output = {
-      ...config.output,
-      globalObject: "this",
-    };
-
-// Configurazione per fallback di moduli mancanti
-config.resolve.fallback = {
-  ...config.resolve.fallback,
-  stream: require.resolve("stream-browserify"),
-  buffer: require.resolve("buffer/"),
-  util: require.resolve("util/"),
-  assert: require.resolve("assert/"),
-  fs: false,
-  path: false,
-  zlib: false,
-};
-
-
-    // Aggiungi plugin per Buffer e Process
-    config.plugins.push(
-      new webpack.ProvidePlugin({
-        Buffer: ["buffer", "Buffer"],
-        process: "process"
-      })
-    );
+    // Aggiungi regola per i font
+    config.module.rules.push({
+      test: /\.(woff|woff2|eot|ttf|otf)$/,
+      use: {
+        loader: 'file-loader',
+        options: {
+          name: '[name].[hash].[ext]',
+          outputPath: 'static/media/',
+          publicPath: '/_next/static/media/'
+        }
+      }
+    });
 
     return config;
   },
+  async headers() {
+    return [
+      {
+        source: '/:path*',
+        headers: [
+          {
+            key: 'Content-Security-Policy',
+            value: "default-src 'self'; connect-src 'self' https://*.vercel.app *.google-analytics.com *.googletagmanager.com api.mapbox.com events.mapbox.com; script-src 'self' 'unsafe-eval' 'unsafe-inline' *.googletagmanager.com; style-src 'self' 'unsafe-inline' api.mapbox.com; font-src 'self' data:; img-src 'self' data: blob: *.mapbox.com https://*.vercel.app"
+          },
+          {
+            key: 'Access-Control-Allow-Origin',
+            value: '*'
+          },
+          {
+            key: 'Access-Control-Allow-Methods',
+            value: 'GET, POST, OPTIONS'
+          },
+          {
+            key: 'Access-Control-Allow-Headers',
+            value: 'Content-Type, Authorization'
+          }
+        ]
+      }
+    ]
+  }
 };
 
 module.exports = withBundleAnalyzer(nextConfig);

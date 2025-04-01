@@ -1,0 +1,87 @@
+CONFIGURAZIONE SERVER FILYIMPIANTI.IT
+=====================================
+
+Gentile Titolare,
+
+Per rendere il sito pienamente operativo in produzione, sono necessarie le seguenti configurazioni:
+
+1. CONFIGURAZIONE DOMINI
+-----------------------------------------
+È necessario configurare i seguenti sottodomini:
+- api.filyimpianti.it  → per le API del sito
+- cdn.filyimpianti.it  → per i contenuti statici
+
+Questi vanno configurati nel pannello di controllo del vostro provider di dominio (es: Aruba, Register, ecc.)
+
+2. EMAIL E SMTP
+-----------------------------------------
+Le credenziali SMTP sono già configurate:
+- Host: webmail.postassl.it
+- Porta: 587
+- Username: Info@filyimpianti.it
+- Password: 4nton1O#
+
+✓ VERIFICARE che queste credenziali siano corrette
+✓ VERIFICARE che la porta 587 sia aperta sul server
+✓ VERIFICARE che il certificato SSL sia valido
+
+3. MONITORAGGIO ERRORI (OPZIONALE MA CONSIGLIATO)
+-----------------------------------------
+Per monitorare gli errori dell'applicazione, è consigliato attivare Sentry:
+1. Registrarsi su https://sentry.io
+2. Creare un nuovo progetto Next.js
+3. Copiare il DSN fornito
+4. Sostituire "your_sentry_dsn" nel file .env.production con il DSN reale
+
+4. LOGGING CENTRALIZZATO (OPZIONALE)
+-----------------------------------------
+Per un logging centralizzato, è possibile attivare Logtail:
+1. Registrarsi su https://betterstack.com/logtail
+2. Creare un nuovo source
+3. Copiare il token fornito
+4. Sostituire "your_logtail_token" nel file .env.production con il token reale
+
+5. SERVIZI GIÀ CONFIGURATI
+-----------------------------------------
+I seguenti servizi sono già configurati e funzionanti:
+✓ Google Analytics (G-XC5QMSHZKQ)
+✓ Mapbox (token configurato)
+✓ Google Maps (ID configurato)
+✓ Rate limiting
+✓ Cache
+✓ Sicurezza (CSP, HSTS)
+
+6. VERIFICA FINALE
+-----------------------------------------
+Prima del lancio, verificare:
+1. Che le email vengano inviate correttamente
+2. Che i form di contatto funzionino
+3. Che la mappa si carichi correttamente
+4. Che il CDN sia accessibile
+5. Che le API rispondano correttamente
+
+7. BACKUP E SICUREZZA
+-----------------------------------------
+Si consiglia di:
+1. Configurare backup automatici giornalieri
+2. Mantenere un registro degli accessi
+3. Aggiornare regolarmente i certificati SSL
+4. Monitorare lo spazio disco e le performance del server
+
+8. CONTATTI SUPPORTO
+-----------------------------------------
+Per assistenza tecnica:
+- Email sviluppatore: [inserire email]
+- Documentazione tecnica: disponibile nella cartella /docs del progetto
+- Repository: [inserire URL repository se disponibile]
+
+NOTA IMPORTANTE SULLA SICUREZZA
+-----------------------------------------
+Questo file contiene informazioni sensibili. 
+Si consiglia di:
+1. Cambiare la password SMTP dopo la configurazione iniziale
+2. Non condividere queste informazioni con terze parti
+3. Conservare una copia sicura di tutte le credenziali
+4. Implementare autenticazione a due fattori dove possibile
+
+Per qualsiasi dubbio o necessità di supporto, non esitare a contattare il team di sviluppo. 

@@ -1,9 +1,9 @@
 'use client'
 
-import React, { useState, useRef } from 'react'
+import React, { useState, useRef, useEffect } from 'react'
 import { Portal } from '@/components/Portal/Portal'
 import styles from './ConfigPopup.module.css'
-import pannelliFotovoltaici from '@/data/pannelliFotovoltaici'
+import pannelliFotovoltaici, { PannelloFotovoltaico } from '@/data/pannelliFotovoltaici'
 import ConfigMap from '../ConfigMap/ConfigMap'
 import { FaTimes } from 'react-icons/fa'
 import type { Panel, ConfigMapHandle } from '@/types/configurator'
@@ -15,8 +15,18 @@ interface ConfigPopupProps {
 
 export default function ConfigPopup({ isOpen, onCloseAction }: ConfigPopupProps) {
   const [panels, setPanels] = useState<Panel[]>([])
-  const [selectedPannello] = useState(pannelliFotovoltaici[0])
+  const [selectedPannello, setSelectedPannello] = useState<PannelloFotovoltaico | null>(null)
   const mapRef = useRef<ConfigMapHandle>(null)
+  const [isMobile, setIsMobile] = useState(false)
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 768)
+    }
+    window.addEventListener('resize', handleResize)
+    handleResize()
+    return () => window.removeEventListener('resize', handleResize)
+  }, [])
 
   if (!isOpen) return null
 
@@ -28,29 +38,16 @@ export default function ConfigPopup({ isOpen, onCloseAction }: ConfigPopupProps)
     console.log('Panel selected:', panel)
   }
 
+  const handlePannelloSelect = (id: string) => {
+    const pannello = pannelliFotovoltaici.find(p => p.modello === id)
+    console.log('Pannello selezionato:', pannello)
+    setSelectedPannello(pannello || null)
+  }
+
   const handlePanelRotate = (panel: Panel, angle: number) => {
     setPanels(prev => prev.map(p => 
       p.id === panel.id ? { ...p, rotation: angle } : p
     ))
-  }
-
-  const handleExport = async () => {
-    try {
-      if (!mapRef.current) return
-      
-      const image = await mapRef.current.captureImage()
-      if (!image) {
-        console.error('Errore durante la cattura dell\'immagine')
-        return
-      }
-
-      console.log('Configurazione da esportare:', {
-        panels,
-        image
-      })
-    } catch (error) {
-      console.error('Errore durante l\'esportazione:', error)
-    }
   }
 
   return (
@@ -58,24 +55,19 @@ export default function ConfigPopup({ isOpen, onCloseAction }: ConfigPopupProps)
       <div className={styles.popupOverlay}>
         <div className={styles.popupContent}>
           <button className={styles.closeButton} onClick={onCloseAction}>
-            <FaTimes />
+            {isMobile ? 'Chiudi' : <FaTimes />}
           </button>
           
           <div className={styles.mapContainer}>
             <ConfigMap
               ref={mapRef}
               selectedPannello={selectedPannello}
+              onPannelloSelect={setSelectedPannello}
               onPanelAdd={handlePanelAdd}
               onPanelSelect={handlePanelSelect}
               onPanelRotate={handlePanelRotate}
               panels={panels}
             />
-          </div>
-
-          <div className={styles.controls}>
-            <button onClick={handleExport} className={styles.exportButton}>
-              Esporta Configurazione
-            </button>
           </div>
         </div>
       </div>

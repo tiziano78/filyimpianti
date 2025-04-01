@@ -17,14 +17,7 @@ const batterieFotovoltaiche: BatteriaFotovoltaica[] = [
     qualita: 'standard',
     brand: 'Zucchetti',
   },
-  {
-    modello: 'Growatt ARK 5KWh',
-    capacita: 5,
-    efficienza: 94,
-    garanzia: '10 anni',
-    qualita: 'standard',
-    brand: 'Growatt',
-  },
+
 
   // Categoria 5 kWh
   {
@@ -32,7 +25,7 @@ const batterieFotovoltaiche: BatteriaFotovoltaica[] = [
     capacita: 5,
     efficienza: 97,
     garanzia: '10 anni',
-    qualita: 'premium',
+    qualita: 'standard',
     brand: 'Huawei',
   },
   {
@@ -62,23 +55,6 @@ const batterieFotovoltaiche: BatteriaFotovoltaica[] = [
     brand: 'LG',
   },
 
-  // Categoria 15 kWh
-  {
-    modello: 'Huawei Luna2000-15-S0',
-    capacita: 15,
-    efficienza: 97,
-    garanzia: '10 anni',
-    qualita: 'premium',
-    brand: 'Huawei',
-  },
-  {
-    modello: 'Varta Pulse Neo 15KWh',
-    capacita: 15,
-    efficienza: 94,
-    garanzia: '10 anni',
-    qualita: 'premium',
-    brand: 'Varta',
-  }
 ];
 
 export default batterieFotovoltaiche; 

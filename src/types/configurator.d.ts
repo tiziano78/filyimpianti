@@ -6,11 +6,10 @@ import { RefObject } from 'react'
 
 export interface Panel {
   id: string;
-  coordinates: Array<Array<[number, number]>>;
+  coordinates: number[][][];
   center: [number, number];
-  rotation: number;
-  elevation: number;
   power: number;
+  rotation: number;
   pannello: PannelloFotovoltaico;
 }
 
@@ -20,7 +19,8 @@ export interface ConfigMapHandle {
 }
 
 export interface ConfigMapProps {
-  selectedPannello: PannelloFotovoltaico;
+  selectedPannello: PannelloFotovoltaico | null;
+  onPannelloSelect: (pannello: PannelloFotovoltaico | null) => void;
   onPanelAdd: (panel: Panel) => void;
   onPanelSelect: (panel: Panel) => void;
   onPanelRotate: (panel: Panel, angle: number) => void;

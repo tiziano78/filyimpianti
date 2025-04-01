@@ -1,0 +1,797 @@
+.layoutManager {
+  position: fixed;
+  right: 20px;
+  top: 70px;
+  width: 300px;
+  max-height: calc(100vh - 320px);
+  overflow-y: auto;
+  background: white;
+  border-radius: 0;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+  padding: 15px;
+  z-index: 1000;
+  box-sizing: border-box;
+  border: 1px solid rgba(0, 150, 199, 0.1);
+}
+
+.statsWindow {
+  background: white;
+  border-radius: 0;
+  padding: 15px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
+  width: 100%;
+  box-sizing: border-box;
+  pointer-events: auto;
+  transition: all 0.2s ease;
+  border: 1px solid rgba(0, 150, 199, 0.15);
+}
+
+.statsWindow:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.statsWindow h3 {
+  margin: 0 0 1rem 0;
+  color: #0096C7;
+  font-size: 1.1rem;
+  border-bottom: 2px solid #0096C7;
+  padding-bottom: 0.5rem;
+}
+
+.statsContent {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.statsItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 14px;
+  gap: 10px;
+  min-width: 0;
+}
+
+.statsItem span {
+  font-weight: 500;
+  color: #495057;
+}
+
+.statsItem span:first-child {
+  flex-shrink: 0;
+}
+
+.statsItem span:last-child {
+  text-align: right;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  flex-shrink: 1;
+}
+
+/* Stili specifici per i diversi tipi di finestre */
+.totalStats {
+  margin-bottom: 20px;
+  padding: 15px;
+  background: rgba(248, 249, 250, 0.7);
+  border-radius: 0;
+  border: 1px solid rgba(0, 150, 199, 0.15);
+}
+
+.totalStats h3 {
+  font-family: var(--font-roboto) !important;
+  margin: 0 0 1rem 0;
+  color: #0096C7;
+  font-size: 1.1rem;
+  border-bottom: 2px solid #0096C7;
+  padding-bottom: 0.5rem;
+}
+
+.currentLayout {
+  background: rgba(255, 255, 255, 0.95);
+  border-color: #22c55e;
+}
+
+.confirmedLayout {
+  background: rgba(255, 255, 255, 0.95);
+  border-color: #22c55e;
+  cursor: pointer;
+}
+
+.confirmedLayouts {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+/* Azioni sui layout */
+.layoutActions {
+  display: flex;
+  gap: 10px;
+  margin-top: 15px;
+  justify-content: space-between;
+}
+
+.projectActions {
+  display: flex;
+  gap: 10px;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.confirmButton,
+.confirmProjectButton,
+.addLayoutButton,
+.orientationButton,
+.deleteButton {
+  padding: 8px 16px;
+  font-size: 12px;
+  background: #0096C7;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-weight: 600;
+  box-shadow: 
+    0 1px 2px rgba(0, 0, 0, 0.1),
+    0 2px 0 rgba(255, 255, 255, 0.3) inset,
+    0 -2px 0 rgba(0, 0, 0, 0.2) inset,
+    0 4px 0 rgba(0, 0, 0, 0.2);
+  position: relative;
+  top: 0;
+}
+
+.confirmButton:hover,
+.confirmProjectButton:hover,
+.addLayoutButton:hover,
+.orientationButton:hover,
+.deleteButton:hover {
+  background: #0077B6;
+  transform: translateY(-1px);
+  box-shadow: 
+    0 2px 4px rgba(0, 0, 0, 0.15),
+    0 2px 0 rgba(255, 255, 255, 0.3) inset,
+    0 -2px 0 rgba(0, 0, 0, 0.2) inset,
+    0 5px 0 rgba(0, 0, 0, 0.2);
+}
+
+.confirmButton:active,
+.confirmProjectButton:active,
+.addLayoutButton:active,
+.orientationButton:active,
+.deleteButton:active {
+  transform: translateY(2px);
+  box-shadow: 
+    0 1px 1px rgba(0, 0, 0, 0.1),
+    0 2px 0 rgba(255, 255, 255, 0.3) inset,
+    0 -1px 0 rgba(0, 0, 0, 0.2) inset,
+    0 2px 0 rgba(0, 0, 0, 0.2);
+}
+
+.confirmButton {
+  background: #22c55e;
+}
+
+.confirmButton:hover {
+  background: #16a34a;
+}
+
+.confirmProjectButton {
+  background: #0096C7;
+}
+
+.confirmProjectButton:hover {
+  background: #0077B6;
+}
+
+.addLayoutButton {
+  background: #22c55e;
+}
+
+.addLayoutButton:hover {
+  background: #16a34a;
+}
+
+.deleteButton {
+  background: #ef4444;
+}
+
+.deleteButton:hover {
+  background: #dc2626;
+}
+
+.maxLayoutsMessage {
+  background: rgba(239, 68, 68, 0.1);
+  color: #ef4444;
+  padding: 0.75rem;
+  border-radius: 0;
+  font-size: 0.875rem;
+  text-align: center;
+  pointer-events: auto;
+  border: 1px solid rgba(239, 68, 68, 0.2);
+}
+
+/* Dark mode */
+@media (prefers-color-scheme: dark) {
+  .statsWindow {
+    background: rgba(45, 55, 72, 0.95);
+    color: white;
+  }
+
+  .statsWindow h3 {
+    color: #4fd1c5;
+    border-bottom-color: #4fd1c5;
+  }
+
+  .statsItem span {
+    color: #4fd1c5;
+  }
+
+  .totalStats {
+    border-color: #4fd1c5;
+  }
+
+  .currentLayout,
+  .confirmedLayout {
+    border-color: #22c55e;
+  }
+
+  .maxLayoutsMessage {
+    background: rgba(239, 68, 68, 0.2);
+    color: #fca5a5;
+  }
+
+  .confirmButton,
+  .confirmProjectButton,
+  .addLayoutButton,
+  .orientationButton {
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .layoutManager {
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    width: 100%;
+    max-height: 80vh;
+    padding: 0;
+    border-radius: 0 0 15px 15px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+    z-index: 1001;
+    transition: all 0.3s ease;
+    overflow: hidden;
+  }
+
+  .toggleBar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px 15px;
+    background: white;
+    border-radius: 0 0 15px 15px;
+    cursor: pointer;
+    position: relative;
+    z-index: 1001;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  .toggleHandle {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 10px;
+    color: #0096C7;
+    font-size: 0.9rem;
+  }
+
+  .toggleTitle {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: #333;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    max-width: 80%;
+    text-align: center;
+  }
+
+  .layoutContent {
+    padding: 15px;
+    overflow-y: auto;
+    max-height: calc(80vh - 40px);
+  }
+
+  .expanded {
+    max-height: 80vh;
+  }
+
+  .collapsed {
+    max-height: 40px;
+  }
+
+  .collapsed .layoutContent {
+    display: none;
+  }
+
+  .statsWindow {
+    margin-bottom: 10px;
+  }
+
+  .layoutActions, 
+  .projectActions {
+    flex-wrap: wrap;
+  }
+
+  .confirmButton,
+  .confirmProjectButton,
+  .addLayoutButton,
+  .orientationButton,
+  .deleteButton {
+    padding: 6px 12px;
+    font-size: 11px;
+    flex: 1;
+    text-align: center;
+    min-width: 80px;
+  }
+  
+  .typeSelection {
+    margin-top: 10px;
+  }
+  
+  .typeButtons {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+  }
+  
+  .typeButton {
+    padding: 8px;
+    font-size: 0.85rem;
+  }
+}
+
+/* Dark mode mobile adjustments */
+@media (prefers-color-scheme: dark) and (max-width: 768px) {
+  .layoutManager {
+    background: rgba(45, 55, 72, 0.98);
+    border-color: rgba(79, 209, 197, 0.1);
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.15);
+  }
+  
+  .toggleBar {
+    background: rgba(45, 55, 72, 0.98);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  }
+
+  .toggleHandle {
+    color: #4fd1c5;
+  }
+
+  .toggleTitle {
+    color: #e2e8f0;
+  }
+}
+
+.layoutSlots {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.layoutSlot {
+  background: white;
+  border: 1px solid rgba(0, 150, 199, 0.15);
+  border-radius: 0;
+  padding: 15px;
+  transition: all 0.2s ease;
+}
+
+.layoutSlot:hover {
+  border-color: rgba(0, 150, 199, 0.3);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.activeSlot {
+  border-color: #0096C7;
+  box-shadow: 0 0 0 1px rgba(0, 150, 199, 0.2);
+  background-color: rgba(0, 150, 199, 0.02);
+}
+
+.emptySlot {
+  background: #f8f9fa;
+  border-style: dashed;
+}
+
+.emptySlotContent {
+  text-align: center;
+  color: #6c757d;
+  padding: 20px 0;
+}
+
+.orientationControl {
+  display: flex;
+  gap: 10px;
+  width: 100%;
+  margin: 10px 0;
+  justify-content: space-between;
+}
+
+.orientationButton {
+  width: 100%;
+  min-height: 36px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  white-space: nowrap;
+}
+
+.completedSlot {
+  background-color: #f8f9fa;
+  border-left: 4px solid #22c55e;
+  opacity: 0.9;
+  pointer-events: none;
+}
+
+.completedSlot .statsItem {
+  color: #4a5568;
+}
+
+.fixedValue {
+  font-weight: 500;
+  color: #2d3748;
+  background-color: #e2e8f0;
+  padding: 4px 8px;
+  border-radius: 0;
+  display: inline-block;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.systemTypeSelection {
+  background: white;
+  border-radius: 0;
+  padding: 15px;
+  margin-bottom: 20px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
+  border: 1px solid rgba(0, 150, 199, 0.15);
+}
+
+.systemTypeSelection h3 {
+  margin: 0 0 15px 0;
+  color: #0096C7;
+  font-size: 1.1rem;
+  text-align: center;
+}
+
+.systemTypeButtons {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+}
+
+.systemTypeButton {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 0;
+  background: #0096C7;
+  color: white;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.systemTypeButton:hover {
+  background: #0077B6;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.storageItem {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+.storageIcon {
+  width: 20px;
+  height: 20px;
+  color: #22c55e;
+  animation: pulse 2s infinite;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulse {
+  0% {
+    opacity: 0.6;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.6;
+  }
+}
+
+/* Dark mode */
+@media (prefers-color-scheme: dark) {
+  .storageIcon {
+    color: #4fd1c5;
+  }
+}
+
+.productionTotalItem {
+  margin-top: 10px;
+  padding: 10px;
+  background: rgba(34, 197, 94, 0.1);
+  border-radius: 0;
+  border: 1px solid rgba(34, 197, 94, 0.2);
+  font-weight: 500;
+}
+
+.productionTotalItem span:first-child {
+  color: #16a34a;
+}
+
+/* Dark mode */
+@media (prefers-color-scheme: dark) {
+  .productionTotalItem {
+    background: rgba(34, 197, 94, 0.2);
+    border-left-color: #4ade80;
+  }
+
+  .productionTotalItem span:first-child {
+    color: #4ade80;
+  }
+}
+
+/* Sezione download PDF */
+.downloadSection {
+  margin: 1rem 0;
+  padding: 1rem;
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 0;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
+  display: flex;
+  justify-content: center;
+  transition: all 0.2s ease;
+  border: 1px solid rgba(0, 150, 199, 0.15);
+}
+
+.downloadSection:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.downloadButton {
+  padding: 10px 20px;
+  background-color: rgb(0, 150, 199);
+  color: white;
+  border: none;
+  border-radius: 0;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  transition: all 0.2s ease;
+}
+
+.downloadButton:hover {
+  background-color: rgb(0, 130, 179);
+  transform: translateY(-1px);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+@media (prefers-color-scheme: dark) {
+  .downloadSection {
+    background: rgba(45, 55, 72, 0.95);
+  }
+}
+
+@media (max-width: 768px) {
+  .downloadSection {
+    margin: 0.5rem 0;
+    padding: 0.75rem;
+  }
+}
+
+.layoutTitle {
+  font-family: var(--font-roboto) !important;
+  margin-bottom: 1rem;
+  color: #0096C7;
+  font-size: 1.1rem;
+  border-bottom: 2px solid #0096C7;
+  padding-bottom: 0.5rem;
+}
+
+/* Quando ci sono due bottoni affiancati */
+.buttonGroup {
+  display: flex;
+  gap: 10px;
+  justify-content: space-between;
+  width: 100%;
+}
+
+/* Pulsante di conferma layout fluttuante */
+.floatingConfirmButton {
+  position: fixed;
+  bottom: 70px;
+  right: 50%;
+  transform: translateX(50%);
+  background-color: #0096C7;
+  color: white;
+  padding: 12px 24px;
+  border-radius: 50px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  border: none;
+  font-weight: 500;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  cursor: pointer;
+  z-index: 9999;
+  transition: all 0.2s ease;
+  min-width: 180px;
+  text-align: center;
+}
+
+.floatingConfirmButton:hover {
+  background-color: #0077B6;
+  transform: translateX(50%) translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.25);
+}
+
+.floatingConfirmButton:active {
+  transform: translateX(50%) translateY(0);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.floatingConfirmButton svg {
+  font-size: 16px;
+}
+
+/* Container per i pulsanti di azione fluttuanti */
+.floatingActionButtons {
+  position: fixed;
+  bottom: 70px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 15px;
+  z-index: 9999;
+  width: 90%;
+  max-width: 400px;
+  justify-content: center;
+}
+
+.floatingActionButtons .floatingConfirmButton {
+  flex: 1;
+  position: relative;
+  transform: none;
+  right: auto;
+  bottom: auto;
+  min-width: 0;
+}
+
+.floatingActionButtons .floatingConfirmButton:hover {
+  transform: translateY(-2px);
+}
+
+.floatingActionButtons .floatingConfirmButton:active {
+  transform: translateY(0);
+}
+
+/* Stile per il pulsante Conferma Progetto */
+.confirmProjectButton {
+  background-color: #2A9D8F;
+}
+
+.confirmProjectButton:hover {
+  background-color: #238C7E;
+}
+
+/* Stile per il pulsante Aggiungi Layout */
+.addLayoutButton {
+  background-color: #E76F51;
+}
+
+.addLayoutButton:hover {
+  background-color: #D65F41;
+}
+
+/* Stile per il pulsante Solo Pannelli */
+.panelsOnlyButton {
+  background-color: #3A86FF;
+}
+
+.panelsOnlyButton:hover {
+  background-color: #2A76EF;
+}
+
+/* Stile per il pulsante Impianto con Batterie */
+.batterySystemButton {
+  background-color: #F94144;
+}
+
+.batterySystemButton:hover {
+  background-color: #E93134;
+}
+
+/* Stile per nascondere la barra del layout su mobile */
+@media (max-width: 768px) {
+  .layoutManager {
+    display: none !important;
+  }
+}
+
+.editUserDataButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5px 10px;
+  margin-top: 10px;
+  background-color: #f0f0f0;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  color: #555;
+  font-size: 12px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.editUserDataButton:hover {
+  background-color: #e0e0e0;
+}
+
+@media (max-width: 768px) {
+  .editUserDataButton {
+    font-size: 10px;
+    padding: 3px 6px;
+  }
+}
+
+.sendEmailButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 15px;
+  margin-top: 10px;
+  background-color: #4CAF50;
+  border: none;
+  border-radius: 4px;
+  color: white;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.sendEmailButton:hover {
+  background-color: #45a049;
+}
+
+@media (max-width: 768px) {
+  .sendEmailButton {
+    font-size: 12px;
+    padding: 8px 12px;
+  }
+}

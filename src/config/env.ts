@@ -4,7 +4,6 @@ function getEnvVar(key: string): string {
   if (!value) {
     // Valori di fallback per development
     const fallbackValues: Record<string, string> = {
-      NEXT_PUBLIC_MAPBOX_TOKEN: 'pk.eyJ1IjoiZmlseWltcGlhbnRpIiwiYSI6ImNtNHdueWFwNDA2dnYya3IwamxibGJwdTEifQ.9j-puKYjscfE8iFY5RvkhA',
       NEXT_PUBLIC_GOOGLE_ANALYTICS: 'G-XC5QMSHZKQ',
       NEXT_PUBLIC_GOOGLE_MAPS_ID: '5af6c7812c55ed29',
       NEXT_PUBLIC_API_URL: 'http://localhost:3000',

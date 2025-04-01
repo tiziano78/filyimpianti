@@ -1,0 +1,44 @@
+# Configurazione Variabili d'Ambiente per Vercel con Resend
+
+Per far funzionare correttamente l'invio di email tramite Resend, è necessario configurare le seguenti variabili d'ambiente su Vercel:
+
+1. RESEND_API_KEY - La chiave API di Resend (obbligatoria)
+   Esempio: re_XXXXXXXX_XXXXXXXXXXXXXXXXXXXXXXXX
+   Puoi ottenerla registrandoti su https://resend.com
+
+2. RECIPIENT_EMAIL - L'indirizzo email a cui verranno inviate le richieste di contatto (obbligatoria)
+   Esempio: filyimpianti.mail@gmail.com
+
+3. TEST_EMAIL - L'indirizzo email per i test (usato solo in ambiente di preview)
+   Esempio: test@filyimpianti.it
+
+Per configurare queste variabili su Vercel, esegui i seguenti comandi:
+
+```
+vercel env add RESEND_API_KEY
+vercel env add RECIPIENT_EMAIL
+vercel env add TEST_EMAIL
+```
+
+Oppure configura le variabili direttamente dal pannello di controllo di Vercel:
+1. Vai su https://vercel.com
+2. Seleziona il tuo progetto
+3. Vai su "Settings" > "Environment Variables"
+4. Aggiungi le variabili d'ambiente necessarie
+
+Dopo aver configurato tutte le variabili, esegui un nuovo deployment:
+
+```
+vercel --prod
+```
+
+Note importanti:
+1. Assicurati che il dominio del mittente (filyimpianti.it) sia verificato su Resend
+2. Per verificare il dominio, segui le istruzioni su https://resend.com/domains
+3. Se non hai ancora un dominio verificato, puoi utilizzare temporaneamente l'indirizzo "onboarding@resend.dev" come mittente
+
+Troubleshooting:
+- Se le email non vengono inviate, controlla i log di Vercel per eventuali errori
+- Verifica che la chiave API di Resend sia corretta
+- Assicurati che il dominio del mittente sia verificato
+- Controlla che l'indirizzo email del destinatario sia valido

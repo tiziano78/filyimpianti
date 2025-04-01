@@ -1,83 +1,231 @@
-.banner {
+.cookieBanner {
     position: fixed;
     bottom: 0;
     left: 0;
     right: 0;
-    background-color: rgba(0, 150, 199, 0.95);
-    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
-    z-index: 9999;
-    padding: 20px;
-    color: white;
+    background: rgba(255, 255, 255, 0.98);
+    box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(10px);
+    z-index: 1000;
+    font-family: var(--font-roboto);
 }
 
 .content {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 20px;
-    font-family: 'Roboto', sans-serif;
+    padding: 2rem;
+}
+
+.content h3 {
+    font-size: 1.8rem;
+    color: #004d40;
+    margin-bottom: 1rem;
+    font-weight: 400;
 }
 
 .content p {
-    margin-bottom: 20px;
-    line-height: 1.5;
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: #333;
+    margin-bottom: 1.5rem;
 }
 
-.buttons {
+.preferences {
+    margin: 2rem 0;
     display: flex;
-    gap: 10px;
-    justify-content: flex-end;
+    flex-direction: column;
+    gap: 1.5rem;
 }
 
-.policyButton {
-    background: none;
-    border: none;
-    color: white;
-    text-decoration: underline;
-    cursor: pointer;
-    padding: 0;
-    font: inherit;
+.category {
+    background: #f8f9fa;
+    padding: 1.5rem;
+    border-radius: 8px;
 }
 
-.policyButton:hover {
-    color: #f0f0f0;
+.categoryHeader {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 0.5rem;
 }
 
-.acceptButton,
-.rejectButton {
-    padding: 10px 20px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
+.categoryLabel {
+    font-size: 1.2rem;
     font-weight: 500;
-    transition: background-color 0.3s ease;
+    color: #004d40;
+}
+
+.required {
+    font-size: 0.9rem;
+    color: #666;
+    font-style: italic;
+}
+
+.categoryDescription {
+    font-size: 1rem;
+    color: #666;
+    margin: 0;
+}
+
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 50px;
+    height: 24px;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: .4s;
+    border-radius: 24px;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 16px;
+    width: 16px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    transition: .4s;
+    border-radius: 50%;
+}
+
+input:checked + .slider {
+    background-color: #004d40;
+}
+
+input:disabled + .slider {
+    background-color: #004d40;
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+input:checked + .slider:before {
+    transform: translateX(26px);
+}
+
+.actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 2rem;
+}
+
+.mainActions {
+    display: flex;
+    gap: 1rem;
+}
+
+.detailsButton {
+    padding: 0.8rem 1.5rem;
+    background: transparent;
+    border: 1px solid #004d40;
+    color: #004d40;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 1rem;
+}
+
+.detailsButton:hover {
+    background: rgba(0, 77, 64, 0.1);
 }
 
 .acceptButton {
-    background-color: #4CAF50;
+    padding: 0.8rem 2rem;
+    background: linear-gradient(135deg, #004d40 0%, #00695c 100%);
     color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 1rem;
 }
 
 .acceptButton:hover {
-    background-color: #45a049;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 77, 64, 0.2);
 }
 
-.rejectButton {
-    background-color: #f44336;
+.saveButton {
+    padding: 0.8rem 2rem;
+    background: #00695c;
     color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 1rem;
 }
 
-.rejectButton:hover {
-    background-color: #da190b;
+.saveButton:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 77, 64, 0.2);
+}
+
+.privacyLinks {
+    margin-top: 2rem;
+    text-align: center;
+    font-size: 0.9rem;
+}
+
+.privacyLinks a {
+    color: #004d40;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.privacyLinks a:hover {
+    color: #00695c;
+    text-decoration: underline;
+}
+
+.separator {
+    margin: 0 1rem;
+    color: #666;
 }
 
 @media (max-width: 768px) {
-    .buttons {
+    .content {
+        padding: 1.5rem;
+    }
+
+    .content h3 {
+        font-size: 1.5rem;
+    }
+
+    .content p {
+        font-size: 1rem;
+    }
+
+    .actions {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .mainActions {
+        width: 100%;
         flex-direction: column;
     }
 
+    .detailsButton,
     .acceptButton,
-    .rejectButton {
+    .saveButton {
         width: 100%;
-        margin: 5px 0;
     }
 } 

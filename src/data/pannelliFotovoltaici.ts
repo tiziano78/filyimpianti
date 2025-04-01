@@ -1,7 +1,6 @@
 export interface PannelloFotovoltaico {
   modello: string;
   efficienza: string;
-  garanzia: string;
   categoria: 'pannello standard' | 'colorato per paesaggistica' | 'trasparente'| 'soluzione copertura'|'lamina senza cornice';
   taglia: 'taglia media' | 'extra large';
   brand: string;
@@ -15,7 +14,6 @@ export const pannelliFotovoltaici: PannelloFotovoltaico[] = [
   {
     modello: 'BISOL Supreme BDO',
     efficienza: ' 21,3% €€€',
-    garanzia: '15 anni sul prodotto',
     categoria: 'pannello standard',
     taglia: 'taglia media',
     brand: 'Bisol',
@@ -28,7 +26,6 @@ export const pannelliFotovoltaici: PannelloFotovoltaico[] = [
   {
     modello: 'BISOL Duplex BDO',
     efficienza: ' 22,7% €€',
-    garanzia: '15 anni sul prodotto',
     categoria: 'pannello standard',
     taglia: 'taglia media',
     brand: 'Bisol',
@@ -41,7 +38,6 @@ export const pannelliFotovoltaici: PannelloFotovoltaico[] = [
   {
     modello: 'BISOL Duplex BBO',
     efficienza: ' 22,7% €€',
-    garanzia: '15 anni sul prodotto',
     categoria: 'pannello standard',
     taglia: 'extra large',
     brand: 'Bisol',
@@ -54,7 +50,6 @@ export const pannelliFotovoltaici: PannelloFotovoltaico[] = [
   {
     modello: 'BISOL Laminate BDO',
     efficienza: '22,7% €€',
-    garanzia: '25 anni sul prodotto',
     categoria: 'lamina senza cornice',
     taglia: 'taglia media',
     brand: 'Bisol',
@@ -67,7 +62,6 @@ export const pannelliFotovoltaici: PannelloFotovoltaico[] = [
   {
     modello: 'BISOL Laminate BBO',
     efficienza: '22,7% €€',
-    garanzia: '25 anni sul prodotto',
     categoria: 'lamina senza cornice',
     taglia: 'extra large',
     brand: 'Bisol',
@@ -80,7 +74,6 @@ export const pannelliFotovoltaici: PannelloFotovoltaico[] = [
   {
     modello: 'BISOL BIPV BSO',
     efficienza: '22,5% €€',
-    garanzia: '25 anni sul prodotto',
     categoria: 'soluzione copertura',
     taglia: 'taglia media',
     brand: 'Bisol',
@@ -90,10 +83,22 @@ export const pannelliFotovoltaici: PannelloFotovoltaico[] = [
     height: 1050,
 
   },
+  //quadro di prova
+  {
+    modello: 'quadro',
+    efficienza: '22,5% €€',
+    categoria: 'pannello standard',
+    taglia: 'taglia media',
+    brand: 'Bisol',
+    power: '440 Wp',
+    potenza: 440,
+    width: 2000,
+    height: 2000,
+
+  },
   {
     modello: 'BISOL Spectrum',
     efficienza: '22,1% €€',
-    garanzia: '25 anni sul prodotto',
     categoria: 'colorato per paesaggistica',
     taglia: 'taglia media',
     brand: 'Bisol',
@@ -106,7 +111,6 @@ export const pannelliFotovoltaici: PannelloFotovoltaico[] = [
   {
     modello: 'BISOL Bifacial BDO',
     efficienza: '22,7% €€',
-    garanzia: '30 anni sul prodotto',
     categoria: 'trasparente',
     taglia: 'taglia media',
     brand: 'Bisol',
@@ -119,7 +123,6 @@ export const pannelliFotovoltaici: PannelloFotovoltaico[] = [
   {
     modello: 'BISOL Bifacial BBO',
     efficienza: '22,7% €€',
-    garanzia: '30 anni sul prodotto',
     categoria: 'trasparente',
     taglia: 'extra large',
     brand: 'Bisol',
@@ -132,7 +135,6 @@ export const pannelliFotovoltaici: PannelloFotovoltaico[] = [
   {
     modello: 'BISOL Lumina BDO',
     efficienza: '21,7% €€',
-    garanzia: '25 anni sul prodotto',
     categoria: 'trasparente',
     taglia: 'taglia media',
     brand: 'Bisol',
@@ -145,7 +147,6 @@ export const pannelliFotovoltaici: PannelloFotovoltaico[] = [
   {
     modello: 'BISOL Lumina BBO',
     efficienza: '18,7% €€',
-    garanzia: '25 anni sul prodotto',
     categoria: 'trasparente',
     taglia: 'extra large',
     brand: 'Bisol',
@@ -158,7 +159,6 @@ export const pannelliFotovoltaici: PannelloFotovoltaico[] = [
   {
     modello: 'Maxeon 6',
     efficienza: '22,3% €€€€',
-    garanzia: '40 anni sul prodotto',
     categoria: 'pannello standard',
     taglia: 'taglia media',
     brand: 'Maxeon',

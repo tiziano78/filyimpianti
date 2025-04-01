@@ -1,5 +1,10 @@
 {
   "version": 2,
+  "buildCommand": "next build",
+  "devCommand": "next dev",
+  "outputDirectory": ".next",
+  "framework": "nextjs",
+  "cleanUrls": true,
   "headers": [
     {
       "source": "/(.*)",
@@ -9,17 +14,48 @@
           "value": "nosniff"
         },
         {
-          "key": "X-Frame-Options", 
+          "key": "X-Frame-Options",
           "value": "DENY"
+        },
+        {
+          "key": "X-XSS-Protection",
+          "value": "1; mode=block"
+        },
+        {
+          "key": "Referrer-Policy",
+          "value": "strict-origin-when-cross-origin"
+        },
+        {
+          "key": "Permissions-Policy",
+          "value": "geolocation=self"
+        }
+      ]
+    },
+    {
+      "source": "/static/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
+      ]
+    },
+    {
+      "source": "/_next/image(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
         }
       ]
     }
   ],
-  "redirects": [
-    {
-      "source": "/blog",
-      "destination": "/blog/",
-      "permanent": true
-    }
-  ]
-} 
+  "env": {
+    "NODE_ENV": "production"
+  },
+  "regions": ["cdg1"],
+  "github": {
+    "silent": true,
+    "autoAlias": true
+  }
+}

@@ -1,0 +1,116 @@
+CONFIGURAZIONE DNS PER EMAIL FILYIMPIANTI.IT
+===========================================
+
+Gentile amministratore del server,
+
+Per garantire il corretto funzionamento e la sicurezza del sistema email, è necessario configurare i seguenti record DNS nel pannello di controllo del dominio filyimpianti.it.
+
+1. RECORD SPF (Sender Policy Framework)
+----------------------------------------
+Tipo: TXT
+Nome: @
+Valore: "v=spf1 include:postassl.it ~all"
+
+Questo record specifica quali server sono autorizzati a inviare email per il dominio.
+
+2. RECORD DKIM (DomainKeys Identified Mail)
+----------------------------------------
+Tipo: TXT
+Nome: selector._domainkey
+Valore: Richiedere la chiave pubblica DKIM al provider email (webmail.postassl.it)
+
+Questo record fornisce una firma crittografica per autenticare le email.
+
+3. RECORD DMARC (Domain-based Message Authentication)
+----------------------------------------
+Tipo: TXT
+Nome: _dmarc
+Valore: "v=DMARC1; p=quarantine; rua=mailto:Info@filyimpianti.it"
+
+Questo record definisce come gestire le email che falliscono l'autenticazione.
+
+4. RECORD MX (Mail Exchange)
+----------------------------------------
+Tipo: MX
+Nome: @
+Priorità: 10
+Valore: mail.postassl.it
+
+Questo record indirizza il traffico email al server corretto.
+
+5. RECORD A PER WEBMAIL
+----------------------------------------
+Tipo: A
+Nome: webmail
+Valore: [IP del server webmail.postassl.it]
+
+Questo record permette l'accesso alla webmail tramite webmail.filyimpianti.it
+
+CONFIGURAZIONE SSL/TLS
+----------------------------------------
+Assicurarsi che:
+1. Il certificato SSL sia valido e installato sul server SMTP
+2. La porta 587 (TLS) sia aperta e configurata correttamente
+3. Il certificato SSL copra sia mail.filyimpianti.it che webmail.filyimpianti.it
+
+VERIFICA DELLA CONFIGURAZIONE
+----------------------------------------
+Dopo aver configurato i record, è possibile verificarli usando questi comandi:
+
+1. Per SPF:
+   nslookup -type=TXT filyimpianti.it
+
+2. Per DKIM:
+   nslookup -type=TXT selector._domainkey.filyimpianti.it
+
+3. Per DMARC:
+   nslookup -type=TXT _dmarc.filyimpianti.it
+
+4. Per MX:
+   nslookup -type=MX filyimpianti.it
+
+5. Test completo della configurazione email:
+   - Utilizzare https://www.mail-tester.com
+   - Inviare un'email di test a check-auth@verifier.port25.com
+
+IMPORTANTE
+----------------------------------------
+- La configurazione corretta di questi record è essenziale per:
+  * Prevenire lo spoofing delle email
+  * Migliorare la deliverability
+  * Evitare che le email finiscano nello spam
+  * Garantire la sicurezza della comunicazione email
+
+- I record possono richiedere fino a 48 ore per propagarsi completamente
+- Mantenere aggiornato il certificato SSL
+- Monitorare regolarmente i log del server email
+- Configurare backup regolari delle caselle email
+
+CONFIGURAZIONE CLIENT EMAIL
+----------------------------------------
+Per Outlook/Thunderbird/Altri client:
+
+- Server SMTP (in uscita):
+  * Host: webmail.postassl.it
+  * Porta: 587
+  * Sicurezza: STARTTLS
+  * Autenticazione: Richiesta
+
+- Server IMAP (in entrata):
+  * Host: webmail.postassl.it
+  * Porta: 993
+  * Sicurezza: SSL/TLS
+  * Autenticazione: Richiesta
+
+CONTATTI E SUPPORTO
+----------------------------------------
+- Supporto provider email: webmail.postassl.it
+- Documentazione: [URL documentazione provider]
+- Assistenza tecnica: [Numero/Email supporto]
+
+In caso di problemi con la configurazione, verificare:
+1. La propagazione DNS (può richiedere 24-48 ore)
+2. La validità del certificato SSL
+3. Le porte firewall (587 per SMTP, 993 per IMAP)
+4. I log del server per eventuali errori
+5. La configurazione antispam del server 

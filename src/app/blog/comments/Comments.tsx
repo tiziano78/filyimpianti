@@ -61,6 +61,8 @@ export default function Comments({ articleId }: CommentsProps) {
       <form onSubmit={handleSubmit} className={styles.commentForm}>
         <input
           type="text"
+          id="comment-author"
+          name="author"
           value={authorName}
           onChange={(e) => setAuthorName(e.target.value)}
           placeholder="Il tuo nome"
@@ -68,6 +70,8 @@ export default function Comments({ articleId }: CommentsProps) {
           aria-label="Nome autore"
         />
         <textarea
+          id="comment-text"
+          name="comment"
           value={newComment}
           onChange={(e) => setNewComment(e.target.value)}
           placeholder="Scrivi un commento..."

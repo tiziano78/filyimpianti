@@ -79,8 +79,9 @@
 .mapContainer {
   flex: 1;
   width: 100%;
-  height: calc(100% - 60px);
+  height: 100%;
   position: relative;
+  overflow: hidden;
 }
 
 /* Stili per il container di Mapbox */
@@ -107,7 +108,7 @@
 .closeButton {
   position: fixed;
   top: 20px;
-  right: 20px;
+  right: 50px;
   width: 40px;
   height: 40px;
   border-radius: 50%;
@@ -234,22 +235,24 @@
   .closeButton {
     top: 10px;
     right: 10px;
+    width: auto;
+    height: auto;
+    border-radius: 4px;
+    background-color: #e93134;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    font-weight: bold;
+    font-size: 14px;
+  }
+
+  .closeButton:hover {
+    background-color: #c62828;
+    color: white;
   }
 
   .controls {
     width: 90%;
     flex-direction: column;
-  }
-}
-
-@media (max-width: 768px) {
-  .controls {
-    width: 90%;
-    flex-direction: column;
-  }
-  
-  .closeButton {
-    top: 10px;
-    right: 10px;
   }
 }

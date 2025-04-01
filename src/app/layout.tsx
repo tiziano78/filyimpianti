@@ -15,7 +15,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
       <head>
         <link rel="preconnect" href="https://api.mapbox.com" />
       </head>
-      <body>
+      <body className="bg-white">
         <StarlinkProvider>
           <ClientLayout>
             {children}

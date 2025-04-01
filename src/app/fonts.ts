@@ -14,22 +14,19 @@ export const roboto = localFont({
     }
   ],
   display: 'swap',
+  preload: true,
   variable: '--font-roboto'
 })
 
 export const orbitron = localFont({
   src: [
     {
-      path: '../../public/fonts/orbitron/Orbitron-Regular.woff2',
+      path: '../../public/fonts/orbitron/Orbitron-VariableFont_wght.woff2',
       weight: '400',
-      style: 'normal',
-    },
-    {
-      path: '../../public/fonts/orbitron/Orbitron-Bold.woff2',
-      weight: '700',
       style: 'normal',
     }
   ],
   display: 'swap',
+  preload: true,
   variable: '--font-orbitron'
 }) 
