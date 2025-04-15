@@ -260,7 +260,11 @@ const ConfigMap = forwardRef<ConfigMapHandle, ConfigMapProps>((
         height: panelHeight
       });
 
-      const response = await fetch('/api/grid-calculator', {
+      // Usa l'URL relativo all'origine corrente per garantire che funzioni sia in locale che in produzione
+      const apiUrl = `${window.location.origin}/api/grid-calculator`;
+      console.log('Chiamata API a:', apiUrl);
+      
+      const response = await fetch(apiUrl, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -1608,11 +1612,12 @@ const ConfigMap = forwardRef<ConfigMapHandle, ConfigMapProps>((
           <>
             <div ref={mapContainer} className={styles.mapboxContainer}>
             </div>
-            {/* Pulsante "Gira pannello" - visibile solo quando si sta disegnando un layout e non è ancora confermato */}
-            {currentLayoutIndex !== null && !layouts[currentLayoutIndex]?.layoutConfirmed && (
+            {/* Pulsante "Gira pannello" - visibile quando si sta disegnando un layout o quando un layout è selezionato ma non ancora confermato */}
+            {(currentLayoutIndex !== null) && (
               <button 
                 className={styles.rotateButton}
                 onClick={() => {
+                  console.log('Pulsante Gira pannello cliccato, alternativeOrientation:', !alternativeOrientation);
                   setAlternativeOrientation(prev => !prev);
                   // Se c'è già un layout, ricalcola con il nuovo orientamento
                   if (currentLayoutIndex !== null && layouts[currentLayoutIndex]) {

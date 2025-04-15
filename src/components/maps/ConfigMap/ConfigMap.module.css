@@ -1090,23 +1090,25 @@
   top: 70px; /* Posizionato sotto la searchbar */
   left: 50%;
   transform: translateX(-50%);
-  z-index: 10;
+  z-index: 100; /* Aumentato z-index per garantire che sia sopra altri elementi */
   background-color: #0096C7;
   color: white;
   border: none;
   border-radius: 4px;
-  padding: 8px 16px;
-  font-size: 14px;
-  font-weight: 500;
+  padding: 10px 20px; /* Aumentato padding per renderlo più grande */
+  font-size: 16px; /* Aumentato font-size per renderlo più leggibile */
+  font-weight: 600; /* Aumentato font-weight per renderlo più evidente */
   cursor: pointer;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-  transition: background-color 0.3s ease;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Ombra più pronunciata */
+  transition: all 0.3s ease;
 }
 
 .rotateButton:hover {
   background-color: #0077B6;
+  transform: translateX(-50%) scale(1.05); /* Leggero effetto di ingrandimento al passaggio del mouse */
 }
 
 .rotateButton:active {
   background-color: #023E8A;
+  transform: translateX(-50%) scale(0.98); /* Leggero effetto di rimpicciolimento al clic */
 }
