@@ -152,6 +152,7 @@ const ConfigMap = forwardRef<ConfigMapHandle, ConfigMapProps>((
   const [isMobile, setIsMobile] = useState<boolean>(false);
   const [isProjectConfirmed, setIsProjectConfirmed] = useState<boolean>(false);
   const [isSoloPannelli, setIsSoloPannelli] = useState<boolean>(false);
+  const [alternativeOrientation, setAlternativeOrientation] = useState<boolean>(false); // Stato per l'orientamento alternativo
 
   // Riferimento al componente LayoutManager
   const layoutManagerRef = useRef<any>(null);
@@ -268,7 +269,8 @@ const ConfigMap = forwardRef<ConfigMapHandle, ConfigMapProps>((
           polygon,
           panelWidth,
           panelHeight,
-          spacing: 0.04 // 4cm di spazio tra i pannelli
+          spacing: 0.04, // 4cm di spazio tra i pannelli
+          alternativeOrientation // Invia il parametro per l'orientamento alternativo
         }),
       });
       
@@ -1603,8 +1605,61 @@ const ConfigMap = forwardRef<ConfigMapHandle, ConfigMapProps>((
             Il tuo browser non supporta WebGL. Per favore, usa un browser compatibile.
           </div>
         ) : (
-          <div ref={mapContainer} className={styles.mapboxContainer}>
-          </div>
+          <>
+            <div ref={mapContainer} className={styles.mapboxContainer}>
+            </div>
+            {/* Pulsante "Gira pannello" - visibile solo quando si sta disegnando un layout e non è ancora confermato */}
+            {currentLayoutIndex !== null && !layouts[currentLayoutIndex]?.layoutConfirmed && (
+              <button 
+                className={styles.rotateButton}
+                onClick={() => {
+                  setAlternativeOrientation(prev => !prev);
+                  // Se c'è già un layout, ricalcola con il nuovo orientamento
+                  if (currentLayoutIndex !== null && layouts[currentLayoutIndex]) {
+                    calculatePanelLayoutForPolygon(layouts[currentLayoutIndex].polygon)
+                      .then(result => {
+                        if (result && mapInstance.current) {
+                          const { stats, panels } = result;
+                          const layoutId = `layout-${currentLayoutIndex}`;
+                          
+                          // Aggiorna la source del layout
+                          const source = mapInstance.current.getSource(layoutId);
+                          if (source && 'setData' in source) {
+                            (source as mapboxgl.GeoJSONSource).setData({
+                              type: 'FeatureCollection',
+                              features: panels
+                            });
+                          }
+                          
+                          // Aggiorna le statistiche
+                          setCurrentStats({
+                            totalPanels: stats.totalPanels,
+                            totalPower: stats.totalPower,
+                            totalArea: stats.totalArea
+                          });
+                          
+                          // Aggiorna il layout nello stato
+                          setLayouts(prev => prev.map((layout, i) => 
+                            i === currentLayoutIndex 
+                              ? {
+                                  ...layout,
+                                  stats: {
+                                    ...stats,
+                                    orientation: layout.stats.orientation,
+                                    isConfirmed: false
+                                  }
+                                }
+                              : layout
+                          ));
+                        }
+                      });
+                  }
+                }}
+              >
+                {alternativeOrientation ? 'Ripristina pannello' : 'Gira pannello'}
+              </button>
+            )}
+          </>
         )}
       </div>
 

@@ -1083,3 +1083,30 @@
     background-color: #0077B6;
   }
 }
+
+/* Stile per il pulsante "Gira pannello" */
+.rotateButton {
+  position: absolute;
+  top: 70px; /* Posizionato sotto la searchbar */
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+  background-color: #0096C7;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 8px 16px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.3s ease;
+}
+
+.rotateButton:hover {
+  background-color: #0077B6;
+}
+
+.rotateButton:active {
+  background-color: #023E8A;
+}

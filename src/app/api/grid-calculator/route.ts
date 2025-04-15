@@ -7,6 +7,7 @@ interface GridRequest {
   panelWidth: number;
   panelHeight: number;
   spacing: number;
+  alternativeOrientation?: boolean; // Parametro per l'orientamento alternativo
 }
 
 export async function POST(request: Request) {
@@ -23,17 +24,18 @@ export async function POST(request: Request) {
       });
     }
 
-    const { polygon, panelWidth, panelHeight, spacing } = body;
+    const { polygon, panelWidth, panelHeight, spacing, alternativeOrientation } = body;
     console.log('Parametri ricevuti:', { 
       polygonType: polygon.type,
       coordinates: polygon.geometry.coordinates,
       panelWidth, 
       panelHeight, 
-      spacing 
+      spacing,
+      alternativeOrientation
     });
 
     // Calcola l'orientamento ottimale
-    const optimalAngle = calculateOptimalRotation(polygon);
+    const optimalAngle = calculateOptimalRotation(polygon, alternativeOrientation);
     console.log('Angolo ottimale calcolato:', optimalAngle);
 
     // Calcola il bounding box del poligono
@@ -75,7 +77,7 @@ export async function POST(request: Request) {
   }
 }
 
-function calculateOptimalRotation(polygon: Feature<Polygon>): number {
+function calculateOptimalRotation(polygon: Feature<Polygon>, alternativeOrientation?: boolean): number {
   try {
     if (!polygon.geometry || !polygon.geometry.coordinates || !polygon.geometry.coordinates[0]) {
       console.warn('Geometria del poligono non valida');
@@ -112,6 +114,11 @@ function calculateOptimalRotation(polygon: Feature<Polygon>): number {
       } catch (error) {
         console.warn('Errore nel calcolo della distanza:', error);
       }
+    }
+
+    // Se è richiesto l'orientamento alternativo, ruota di 90 gradi
+    if (alternativeOrientation) {
+      optimalAngle += Math.PI / 2;
     }
 
     return optimalAngle;
